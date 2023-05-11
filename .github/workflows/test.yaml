@@ -18,8 +18,8 @@ jobs:
       # Exclude features not supported by rbpf yet.
       # atomic operations - https://github.com/qmonnet/rbpf/issues/47
       # mem-len - Tests assume r2 contains the length of the memory.
-      KNOWN_FAILURES: "(lock|mem-len)"
-      CONFORMANCE_IMAGE: "ghcr.io/alan-jowett/bpf_conformance@sha256:547765717557e0f222de71fbf26f4bd9621c0149911aa03296024b469dd4598b"
+      KNOWN_FAILURES: "(lock|mem-len|call_local)"
+      CONFORMANCE_IMAGE: "ghcr.io/alan-jowett/bpf_conformance@sha256:670e552042039681cb476527c40e57deb2da121bf73c5d41820c1a6a383d7726"
     strategy:
       fail-fast: false
       matrix:
