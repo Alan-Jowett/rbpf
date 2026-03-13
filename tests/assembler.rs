@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: (Apache-2.0 OR MIT)
 // Copyright 2017 Rich Lane <lanerl@gmail.com>
 
+#![cfg(feature = "assembler")]
+
 extern crate rbpf;
 mod common;
 
