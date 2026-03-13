@@ -16,6 +16,8 @@
 
 // These are unit tests for the eBPF interpreter.
 
+#![cfg(feature = "assembler")]
+
 extern crate rbpf;
 mod common;
 

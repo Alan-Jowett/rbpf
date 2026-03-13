@@ -14,6 +14,7 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 extern crate byteorder;
+#[cfg(feature = "assembler")]
 extern crate combine;
 extern crate log;
 
@@ -36,7 +37,9 @@ use byteorder::{ByteOrder, LittleEndian};
 use core::ops::Range;
 use stack::{StackUsage, StackVerifier};
 
+#[cfg(feature = "assembler")]
 mod asm_parser;
+#[cfg(feature = "assembler")]
 pub mod assembler;
 #[cfg(feature = "cranelift")]
 mod cranelift;
