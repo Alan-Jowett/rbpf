@@ -487,6 +487,8 @@ methods are available.
 The first method consists in using the assembler provided by the crate.
 
 ```rust
+# #[cfg(feature = "assembler")]
+# {
 extern crate rbpf;
 use rbpf::assembler::assemble;
 
@@ -500,6 +502,7 @@ let prog = assemble("add64 r1, 0x605
 #[cfg(feature = "std")] {
     println!("{:?}", prog);
 }
+# }
 ```
 
 The above snippet will produce:

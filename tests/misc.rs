@@ -15,6 +15,7 @@
 
 extern crate rbpf;
 
+#[cfg(feature = "assembler")]
 use rbpf::assembler::assemble;
 #[cfg(feature = "std")]
 use rbpf::helpers;
@@ -102,7 +103,7 @@ fn alloc_exec_memory() -> Box<[u8]> {
 }
 
 #[test]
-#[cfg(feature = "std")]
+#[cfg(all(feature = "std", feature = "assembler"))]
 fn test_vm_block_port() {
     // To load the bytecode from an object file instead of using the hardcoded instructions,
     // use the additional crates commented at the beginning of this file (and also add them to your
@@ -194,7 +195,7 @@ fn test_vm_block_port() {
 }
 
 #[test]
-#[cfg(all(not(windows), feature = "std"))]
+#[cfg(all(not(windows), feature = "std", feature = "assembler"))]
 fn test_jit_block_port() {
     // To load the bytecode from an object file instead of using the hardcoded instructions,
     // use the additional crates commented at the beginning of this file (and also add them to your
@@ -669,6 +670,7 @@ fn verifier_fail(_prog: &[u8]) -> Result<(), Error> {
 }
 
 #[test]
+#[cfg(feature = "assembler")]
 fn test_verifier_success() {
     let prog = assemble(
         "mov32 r0, 0xBEE
@@ -682,6 +684,7 @@ fn test_verifier_success() {
 }
 
 #[test]
+#[cfg(feature = "assembler")]
 #[should_panic(expected = "Gaggablaghblagh!")]
 fn test_verifier_fail() {
     let prog = assemble(
@@ -696,6 +699,7 @@ fn test_verifier_fail() {
 }
 
 #[test]
+#[cfg(feature = "assembler")]
 fn test_vm_bpf_to_bpf_call() {
     let test_code = assemble(
         "
@@ -720,7 +724,7 @@ fn test_vm_bpf_to_bpf_call() {
     assert_eq!(vm_res, 0x10);
 }
 
-#[cfg(not(windows))]
+#[cfg(all(not(windows), feature = "assembler"))]
 #[test]
 fn test_vm_jit_bpf_to_bpf_call() {
     let test_code = assemble(
@@ -798,6 +802,7 @@ fn test_vm_jit_other_type_call() {
 }
 
 #[test]
+#[cfg(feature = "assembler")]
 #[should_panic(expected = "Error: out of bounds memory store (insn #8)")]
 fn test_stack_overflow() {
     // The stdw instruction is used to test the stack overflow.

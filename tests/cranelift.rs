@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-#![cfg(feature = "cranelift")]
+#![cfg(all(feature = "cranelift", feature = "assembler"))]
 
 extern crate rbpf;
 mod common;

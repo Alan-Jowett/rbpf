@@ -16,6 +16,8 @@
 
 // These are unit tests for the eBPF “verifier”.
 
+#![cfg(feature = "assembler")]
+
 extern crate rbpf;
 
 use rbpf::assembler::assemble;

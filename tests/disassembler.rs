@@ -3,6 +3,8 @@
 //
 // Adopted from tests in `tests/assembler.rs`
 
+#![cfg(feature = "assembler")]
+
 extern crate rbpf;
 mod common;
 
